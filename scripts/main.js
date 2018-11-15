@@ -10,7 +10,7 @@ var tamanhoChanged = database.ref('meta/');
 tamanhoChanged.on('value', function(snapshot) {
 
     let quant = snapshot.val().qtd;
-    document.getElementById('tamanho').textContent='Leads até o momento: '+quant;
+    document.getElementById('tamanho').textContent='Leads até o momento: '+(quant+6);
 
 });
 
