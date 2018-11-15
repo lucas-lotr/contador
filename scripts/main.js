@@ -1,8 +1,19 @@
-var submitButton=document.getElementById('submit-button');
-var resetButton=document.getElementById('reset-button');
 var showLeadButton=document.getElementById('show-leads-button');
 var nome=document.getElementById('input-nome');
 var database=firebase.database();
+
+
+var tamanhoChanged = database.ref('meta/');
+
+
+
+tamanhoChanged.on('value', function(snapshot) {
+
+    let quant = snapshot.val().qtd;
+    document.getElementById('tamanho').textContent='Leads até o momento: '+quant;
+
+});
+
 
 function writeData(id,data){
 
@@ -27,39 +38,13 @@ function getTamanho(){
     return firebase.database().ref('/meta/').once('value').then(function(snapshot) {
         
         let quant = snapshot.val().qtd;
-        document.getElementById('tamanho').textContent=quant;
+        document.getElementById('tamanho').textContent='Leads até o momento: '+quant;
 
     });
 
 }
 
-submitButton.onclick = function(){
-    // console.log(nome.value);
 
-    // return firebase.database().ref('/meta/').once('value').then(function(snapshot) {
-    //     console.log(snapshot.val().qtd);
-
-    //     writeData(Number(snapshot.val().qtd),nome.value);
-
-    //   });
-
-    alert('função desabilitada')
-
-    
-}
-
-resetButton.onclick = function(){
-
-    // database.ref('leads/').set({
-        
-    // });  
-    // database.ref('meta/').set({
-    //     qtd: 0
-    // });  
-
-    alert('função desabilitada');
-
-}
 
 
 function resetDB() {
